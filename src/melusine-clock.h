@@ -10,30 +10,29 @@
  * from the use of this software.
  */
 
-#include <QtWaylandShellHelpers/qwaylandshellapplication.h>
-#include <QtWaylandShellHelpers/qxdgtoplevelwindow.h>
-#include <QtWaylandShellHelpers/qlayershellwindow.h>
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QPushButton>
 
-#ifndef MELUSINE_PANEL_H
-#define MELUSINE_PANEL_H
-
-#include "melusine-clock.h"
+#ifndef MELUSINE_CLOCK_H
+#define MELUSINE_CLOCK_H
 
 namespace Melusine {
 
-class Panel : public QtWaylandShellHelpers::QLayerShellWindow
+class ClockWidget : public QWidget
 {
 public:
-	Panel(QWidget *parent = nullptr);
-	~Panel();
+	ClockWidget(QWidget *parent = nullptr);
+	~ClockWidget();
 
 private:
 	QHBoxLayout *mLayout;
-	ClockWidget *mClockWidget;
+	QLabel *mDateLabel;
+	QLabel *mTimeLabel;
+	QTimer *mClockTimer;
+
+	void updateTime();
 };
 
 }

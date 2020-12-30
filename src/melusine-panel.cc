@@ -24,18 +24,21 @@ using namespace Melusine;
 
 Panel::Panel(QWidget *parent) :
 	QtWaylandShellHelpers::QLayerShellWindow(parent),
-	m_layout(new QHBoxLayout(this))
+	mLayout(new QHBoxLayout(this)),
+	mClockWidget(new ClockWidget)
 {
 	setObjectName("Panel");
-	setStyleSheet("#Panel { background-color: rgba(0.0, 0.0, 0.0, 0.5); } * { color: '#eeeeee'; }");
+	setStyleSheet("#Panel { background-color: rgba(0.0, 0.0, 0.0, 0.4); } * { color: '#eeeeee'; }");
 
 	setLayer(QtWaylandShellHelpers::QLayerShellWindow::Layer::Top);
 	setAnchor((QtWaylandShellHelpers::QLayerShellWindow::Anchor) 13); /* top left + top right */
 
 	setExpansionAxis(true, false);
 
-	QLabel *lab = new QLabel("hi");
-	m_layout->addWidget(lab);
+	mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout->addStretch(2);
+	mLayout->addWidget(mClockWidget, 0);
+	mLayout->addStretch(2);
 }
 
 Panel::~Panel()
