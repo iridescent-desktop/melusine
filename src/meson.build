@@ -1,5 +1,6 @@
 melusine_src = [
   'melusine-main.cc',
+  'melusine-panel.cc',
 ]
 
 melusine_exe = executable('melusine',

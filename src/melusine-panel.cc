@@ -22,13 +22,22 @@
 
 using namespace Melusine;
 
-int
-main(int argc, char **argv)
+Panel::Panel(QWidget *parent) :
+	QtWaylandShellHelpers::QLayerShellWindow(parent),
+	m_layout(new QHBoxLayout(this))
 {
-	QtWaylandShellHelpers::QWaylandShellApplication app(argc, argv);
+	setObjectName("Panel");
+	setStyleSheet("#Panel { background-color: rgba(0.0, 0.0, 0.0, 0.5); } * { color: '#eeeeee'; }");
 
-	Panel p;
-	p.show();
+	setLayer(QtWaylandShellHelpers::QLayerShellWindow::Layer::Top);
+	setAnchor((QtWaylandShellHelpers::QLayerShellWindow::Anchor) 13); /* top left + top right */
 
-	return app.exec();
+	setExpansionAxis(true, false);
+
+	QLabel *lab = new QLabel("hi");
+	m_layout->addWidget(lab);
+}
+
+Panel::~Panel()
+{
 }

@@ -18,17 +18,21 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-#include "melusine-panel.h"
+#ifndef MELUSINE_PANEL_H
+#define MELUSINE_PANEL_H
 
-using namespace Melusine;
+namespace Melusine {
 
-int
-main(int argc, char **argv)
+class Panel : public QtWaylandShellHelpers::QLayerShellWindow
 {
-	QtWaylandShellHelpers::QWaylandShellApplication app(argc, argv);
+public:
+	Panel(QWidget *parent = nullptr);
+	~Panel();
 
-	Panel p;
-	p.show();
+private:
+	QHBoxLayout *m_layout;
+};
 
-	return app.exec();
 }
+
+#endif
